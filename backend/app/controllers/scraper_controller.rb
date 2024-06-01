@@ -7,14 +7,15 @@ class ScraperController < ApplicationController
     end
 
     def create
-        scraper = Scraper.new(scraper_params)
+        scraper = Scraper.find_or_create_by!(scraper_params)
+        
         if scraper.save!
             ScraperJob.perform_later(scraper)
-            render json: { status: 'SUCCESS', message: 'Scraped Succesfully' }, status: :created
+            render json: { status: 'SUCCESS', message: 'Scraped Successfully' }, status: :created
         else
-            render json: { status: 'Error', message: 'Something Went Wrong' },  status: :unprocessable_entity
+            render json: { status: 'Error', message: 'Something Went Wrong' }, status: :unprocessable_entity
         end
-    end
+      end
     private
 
     def scraper_params

@@ -3,10 +3,16 @@ class ScraperJob < ApplicationJob
 
   def perform(scraper)
     data = ScraperService.new(scraper.url).call
-    product = Product.create!(name: data["title"].first, 
-                              description: data["description"].first, 
-                              price: data["price"].first,
-                              details: data["details"].to_json)
+
+    p "==========================================="
+    p data
+    return if data["title"].blank?
+  
+    product = Product.find_or_create_by!(scraper: scraper)
+    product.update!(name: data["title"].first, 
+                    description: data["description"].first, 
+                    price: data["price"].first,
+                    details: data["details"].to_json)
     
     data["categories"].each do |category_name|
       category = Category.find_or_create_by!(name: category_name.strip)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_01_140224) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_01_142418) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -42,6 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_01_140224) do
     t.json "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "scraper_id", null: false
+    t.index ["scraper_id"], name: "index_products_on_scraper_id"
   end
 
   create_table "scrapers", force: :cascade do |t|
@@ -60,4 +62,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_01_140224) do
   add_foreign_key "product_categories", "products"
   add_foreign_key "product_sizes", "products"
   add_foreign_key "product_sizes", "sizes"
+  add_foreign_key "products", "scrapers"
 end
