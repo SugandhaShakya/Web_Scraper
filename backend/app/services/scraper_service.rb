@@ -22,7 +22,8 @@ class ScraperService
             "price" =>  price,
             "categories" => categories,
             "sizes" => sizes,
-            "details" => details
+            "details" => details,
+            "description" => description
         }
     end
 
@@ -46,6 +47,10 @@ class ScraperService
 
     def sizes
         return @response.css('.E1E-3Z').map(&:content)
+    end
+
+    def description
+        return @response.css('.w9jEaj').map(&:content)
     end
 
     def details
