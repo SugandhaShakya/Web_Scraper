@@ -5,12 +5,25 @@ class ScraperController < ApplicationController
         scraper = Scraper.find_or_create_by!(scraper_params)
         
         if scraper.save!
-            ScraperJob.perform_later(scraper)
-            render json: { status: 'SUCCESS', message: 'Scraped Successfully' }, status: :created
+            ScraperJob.perform_now(scraper)
+
+            product = Product.includes(:sizes, :categories).find_by(scraper: scraper)
+            render json: product, include: [:sizes, :categories], status: :ok            
         else
             render json: { status: 'Error', message: 'Something Went Wrong' }, status: :unprocessable_entity
         end
-      end
+    end
+
+    def show
+        scraper = Scraper.find(params[:id])
+        ScraperJob.perform_now(scraper)
+
+        product = Product.includes(:sizes, :categories).find_by(scraper: scraper)
+        render json: product, include: [:sizes, :categories], status: :ok
+    rescue ActiveRecord::RecordNotFound
+        render json: { error: 'Product not found' }, status: :not_found
+    end
+
     private
 
     def scraper_params

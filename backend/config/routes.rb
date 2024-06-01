@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   post '/scraper', to: 'scraper#create'
+  get '/scraper/:id', to: 'scraper#show'
+
   resources :products, only: [:index, :show] do
     collection do
       get :search
