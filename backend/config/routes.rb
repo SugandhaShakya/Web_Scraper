@@ -5,6 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   post '/scraper', to: 'scraper#create'
-  get '/scraper', to: 'scraper#get'
 
 end

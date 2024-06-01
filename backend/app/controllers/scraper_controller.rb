@@ -1,11 +1,6 @@
 class ScraperController < ApplicationController
     skip_before_action :verify_authenticity_token
 
-    def get
-        # scraper = Scraper.new(scraper_params)
-        render json: { status: 'SUCCESS', message: 'Product created successfully' }
-    end
-
     def create
         scraper = Scraper.find_or_create_by!(scraper_params)
         
