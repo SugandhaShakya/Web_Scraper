@@ -29,4 +29,7 @@ export class ScrapeDataComponent{
         console.error('Error fetching scraped data', error);
       });
   }
+  getDetails(details: string) {
+    return Object.entries(JSON.parse(details)).map(([key, value]) => ({ key, value }));
+  }
 }

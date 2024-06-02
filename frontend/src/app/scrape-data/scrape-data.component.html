@@ -6,7 +6,30 @@
   </div>
   <button class="btn btn-primary" (click)="scrapeData()">Scrape Data</button>
 </div>
-<div *ngIf="scrapedData">
-  <h3>Scraped Data:</h3>
-  <pre>{{ scrapedData | json }}</pre>
+<div class="product-container" *ngIf="scrapedData">
+  <div class="product-header">
+    <h1>{{ scrapedData.name }}</h1>
+    <h1>{{ scrapedData.price }}</h1>
+  </div>
+  <div class="product-details">
+    <h2>Details</h2>
+    <div *ngIf="scrapedData.details">
+      <div *ngFor="let detail of getDetails(scrapedData.details)">
+        <p>{{ detail.key }}: {{ detail.value }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="sizes">
+    <h2>Available Sizes</h2>
+    <ul>
+      <li *ngFor="let size of scrapedData.sizes">{{ size.name }}</li>
+    </ul>
+  </div>
+  <div class="categories">
+    <h2>Categories</h2>
+    <ul>
+      <li *ngFor="let category of scrapedData.categories">{{ category.name }}</li>
+    </ul>
+  </div>
 </div>
+
