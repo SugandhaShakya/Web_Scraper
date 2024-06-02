@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>URL Scraper</h2>
+  <div class="form-group">
+    <label for="urlInput">Enter URL:</label>
+    <input type="text" class="form-control" id="urlInput" [(ngModel)]="url" />
+  </div>
+  <button class="btn btn-primary" (click)="scrapeData()">Scrape Data</button>
+</div>
+<div *ngIf="scrapedData">
+  <h3>Scraped Data:</h3>
+  <pre>{{ scrapedData | json }}</pre>
+</div>
