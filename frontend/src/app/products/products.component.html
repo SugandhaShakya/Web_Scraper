@@ -1,0 +1,73 @@
+<div class="search-container">
+  <input
+    type="text"
+    class="search"
+    placeholder="Search Products ..."
+    [(ngModel)]="searchQuery"
+  />
+  <button class="btn" (click)="searchProducts()">Search</button>
+</div>
+
+<div class="products-container">
+  <h2>Products</h2>
+  <table class="product-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td><button (click)="showDetails(product)">View Details</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="selectedProductDetails" class="modal-overlay" (click)="closeDetails()">
+    
+  <div class="modal-content">
+    <h1>Produts details</h1>
+    <button class="close-button" (click)="closeDetails()">X</button>
+    <div class="modal-header">
+      <h3>{{ selectedProductDetails.name }}</h3>
+      <h3>{{ selectedProductDetails.price }}</h3>
+    </div>
+    <div class="modal-body">
+      <div class="product-details">
+        <h2>Details</h2>
+        <div *ngIf="selectedProductDetails.details">
+          <table class="details-table">
+            <tbody>
+              <tr *ngFor="let detail of getDetails(selectedProductDetails.details)" class="detailed-item">
+                <td class="key">{{ detail.key }}</td>
+                <td class="value">{{ detail.value }}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      <div class="sizes">
+        <h2>Available Sizes</h2>
+        <ul class="list">
+          <li *ngFor="let size of selectedProductDetails.sizes">
+            {{ size.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="categories">
+        <h2>Categories</h2>
+        <ul class="list">
+          <li *ngFor="let category of selectedProductDetails.categories">
+            {{ category.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

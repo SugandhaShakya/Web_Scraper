@@ -1,5 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
-// import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component} from '@angular/core';
 import { ScrapeService } from '../services/scrape.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';

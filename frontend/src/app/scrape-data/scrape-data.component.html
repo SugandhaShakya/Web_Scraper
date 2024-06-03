@@ -1,8 +1,7 @@
-<div class="container">
+<div class="search-container">
   <h2>URL Scraper</h2>
   <div class="form-group">
-    <label for="urlInput">Enter URL:</label>
-    <input type="text" class="form-control" id="urlInput" [(ngModel)]="url" />
+    <input type="text" class="form-control" placeholder="Enter URL" id="urlInput" [(ngModel)]="url" />
   </div>
   <button class="btn btn-primary" (click)="scrapeData()">Scrape Data</button>
 </div>
@@ -14,9 +13,14 @@
   <div class="product-details">
     <h2>Details</h2>
     <div *ngIf="scrapedData.details">
-      <div *ngFor="let detail of getDetails(scrapedData.details)">
-        <p>{{ detail.key }}: {{ detail.value }}</p>
-      </div>
+      <table class="details-table">
+        <tbody>
+          <tr *ngFor="let detail of getDetails(scrapedData.details)" class="detailed-item">
+            <td class="key">{{ detail.key }}</td>
+            <td class="value">{{ detail.value }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <div class="sizes">

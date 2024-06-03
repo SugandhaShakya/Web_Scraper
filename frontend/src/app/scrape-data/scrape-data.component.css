@@ -1,3 +1,48 @@
+.search-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
 .product-container {
     width: 80%;
     margin: auto;
@@ -5,30 +50,43 @@
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-  .product-header {
-    display: flex;
-    justify-content: space-between;
+.product-header {
+  display: flex;
+  justify-content: space-between;
+}
+.product-details {
+  margin-top: 20px;
+}
+.product-details h2 {
+  margin-top: 0;
+}
+.product-details p {
+  margin: 5px 0;
+}
+.sizes, .categories {
+  margin-top: 20px;
   }
-  .product-details {
-    margin-top: 20px;
-  }
-  .product-details h2 {
-    margin-top: 0;
-  }
-  .product-details p {
-    margin: 5px 0;
-  }
-  .sizes, .categories {
-    margin-top: 20px;
-  }
-  .sizes ul, .categories ul {
-    list-style: none;
-    padding: 0;
-  }
-  .sizes li, .categories li {
-    background: #f4f4f4;
-    margin: 5px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
-  
+.sizes ul, .categories ul {
+  list-style: none;
+  padding: 0;
+}
+.sizes li, .categories li {
+  margin: 5px 0;
+  padding: 10px;
+}
+
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.details-table td {
+  padding: 5px 10px;
+  border: none;
+}
+
+.details-table .key {
+  font-weight: bold;
+  width: 20%;
+}
