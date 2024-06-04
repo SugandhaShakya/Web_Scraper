@@ -4,8 +4,8 @@
     class="search"
     placeholder="Search Products ..."
     [(ngModel)]="searchQuery"
+    (input)="search()"
   />
-  <button class="btn" (click)="searchProducts()">Search</button>
 </div>
 
 <div class="products-container">

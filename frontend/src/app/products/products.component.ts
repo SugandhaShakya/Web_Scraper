@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ScrapeService } from '../services/scrape.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'products',
@@ -14,10 +17,19 @@ export class ProductsComponent implements OnInit {
   products: any[] = [];
   searchQuery: string = '';
   selectedProductDetails: any;
+  private searchTerms = new Subject<string>();
+
   constructor(private scrapeService: ScrapeService) {}
 
   ngOnInit(): void {
     this.getProducts();
+    this.searchTerms.pipe(
+      debounceTime(350), 
+      distinctUntilChanged(), 
+      switchMap((term: string) => this.scrapeService.searchProducts(term))
+    ).subscribe((data) => {
+      this.products = data;
+    });
   }
 
   getProducts(): void {
@@ -35,6 +47,10 @@ export class ProductsComponent implements OnInit {
     this.scrapeService.searchProducts(this.searchQuery).subscribe((data) => {
       this.products = data;
     });
+  }
+
+  search(): void {
+    this.searchTerms.next(this.searchQuery);
   }
 
   getDetails(details: string) {
