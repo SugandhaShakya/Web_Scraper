@@ -88,16 +88,16 @@ This web application scrapes product information from an e-commerce webpage - Fl
     ng test
 
 ## Assumptions and Design Choices
-1. The project uses SQLite3 for simplicity.
-2. Web scraping is handled asynchronously to avoid blocking the user interface.
+- The project uses SQLite3 for simplicity.
+- Web scraping is handled asynchronously to avoid blocking the user interface.
 
 ## Future Improvements
-1. Implement more comprehensive error handling for web scraping.
-2. Enhance the UI/UX with more detailed product views.
-3. Add pagination and sorting to the product list.
+- Implement more comprehensive error handling for web scraping.
+- Enhance the UI/UX with more detailed product views.
+- Add pagination and sorting to the product list.
 
 ## Known Issues
-Some products might not scrape correctly due to changes in the source HTML structure.
+- Some products might not scrape correctly due to changes in the source HTML structure.
 
 ## Project Structure
 
